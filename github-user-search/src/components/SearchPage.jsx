@@ -1,52 +1,56 @@
-import { useState } from 'react';
-import { searchUsers } from '../services/githubService.js';
-import UserCard from './UserCard.jsx';
+import { useState } from "react";
+import { fetchUserData } from "../services/githubService";
 
 export default function SearchPage() {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
+  const [username, setUsername] = useState("");
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
-  async function handleSearch(e) {
-    e?.preventDefault();
-    if (!query.trim()) return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
-    setError(null);
+    setError("");
+    setUser(null);
+
     try {
-      const users = await searchUsers(query.trim());
-      setResults(users);
+      const data = await fetchUserData(username);
+      setUser(data);
     } catch (err) {
-      setError('Failed to fetch users. Check console for details.');
-      console.error(err);
+      setError("Looks like we can't find the user");
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
-    <div>
-      <h2>Search GitHub Users</h2>
-
-      <form onSubmit={handleSearch} style={{ marginBottom: '1rem' }}>
+    <div style={{ textAlign: "center", marginTop: "2rem" }}>
+      <h1>GitHub User Search</h1>
+      <form onSubmit={handleSubmit}>
         <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Enter username (e.g. torvalds)"
-          style={{ padding: '0.5rem', width: '60%', maxWidth: '320px' }}
+          type="text"
+          placeholder="Enter GitHub username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          style={{ padding: "0.5rem", width: "250px" }}
         />
-        <button type="submit" style={{ marginLeft: '0.5rem', padding: '0.5rem 1rem' }}>
+        <button type="submit" style={{ marginLeft: "1rem", padding: "0.5rem 1rem" }}>
           Search
         </button>
       </form>
 
-      {loading && <p>Loading…</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {!loading && results.length === 0 && <p>No results yet.</p>}
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
-      <div style={{ display: 'grid', gap: '0.75rem', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
-        {results.map(user => <UserCard key={user.id} user={user} />)}
-      </div>
+      {user && (
+        <div style={{ marginTop: "2rem" }}>
+          <img src={user.avatar_url} alt={user.login} width="100" style={{ borderRadius: "50%" }} />
+          <h2>{user.login}</h2>
+          <a href={user.html_url} target="_blank" rel="noopener noreferrer">
+            View Profile
+          </a>
+        </div>
+      )}
     </div>
   );
 }
