@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-function App() {
-  return (
-    <h1 className="text-3xl font-bold text-blue-600">
-      Hello Tailwind + React!
-    </h1>
-  )
-}
-
-export default App
-=======
+import Header from './components/Header';
+import MainContent from './components/MainContent';
+import Footer from './components/Footer';
+import UserProfile from './components/UserProfile';  
 import React from "react";
 import Header from "./components/Header";
 import MainContent from "./components/MainContent";
@@ -23,20 +16,15 @@ function App() {
       <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
       <UserProfile name="John" age="30" bio="Enjoys coding and traveling" />
       <Footer />
-import RecipeList from './components/RecipeList';
-import AddRecipeForm from './components/AddRecipeForm';
-
-function App() {
-  return (
-    <div style={{ padding: '20px' }}>
-      <h1>🍲 Recipe Sharing App</h1>
-      <AddRecipeForm />
-      <RecipeList />
+      <UserProfile 
+        name="Alice" 
+        age="25" 
+        bio="Loves hiking and photography" 
+      />
+    </>
     </div>
   );
 }
 
 export default App;
 
-
->>>>>>> b59e3e6e0205ce9ace605333308e674a4267ca12
