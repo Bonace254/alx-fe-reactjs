@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+<<<<<<< HEAD
+=======
+.env
+<<<<<<< HEAD
+>>>>>>> 72cc504 (Initial commit - GitHub User Search app)
+=======
+.env
+>>>>>>> 8d68768 (Initial commit)

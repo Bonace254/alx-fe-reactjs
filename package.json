@@ -1,10 +1,5 @@
 {
-<<<<<<< HEAD
   "name": "tailwind-react-integration",
-=======
-  "name": "alx-react-app",
-  "name": "recipe-sharing-app",
->>>>>>> b59e3e6e0205ce9ace605333308e674a4267ca12
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,7 +11,6 @@
   },
   "dependencies": {
     "react": "^19.1.1",
-<<<<<<< HEAD
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
@@ -33,7 +27,6 @@
     "vite": "^7.1.7"
   }
 }
-=======
     "react-dom": "^19.1.1",
     "zustand": "^5.0.8"
   },
@@ -49,6 +42,3 @@
     "vite": "^7.1.2"
   }
 }
-
-
->>>>>>> b59e3e6e0205ce9ace605333308e674a4267ca12
