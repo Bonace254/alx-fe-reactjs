@@ -12,3 +12,4 @@ It demonstrates how to set up Tailwind with React for fast frontend development.
 - React
 - Vite
 - Tailwind CSS
+
