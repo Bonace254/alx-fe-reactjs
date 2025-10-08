@@ -9,20 +9,20 @@ const fetchPosts = async () => {
   return res.json();
 };
 
-function PostsComponent() {
-  const { data, error, isLoading, refetch } = useQuery({
+export default function PostsComponent() {
+  const { data, error, isLoading, isError, refetch } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
   });
 
   if (isLoading) return <p>Loading posts...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <div>
-      <button onClick={() => refetch()}>🔄 Refetch Posts</button>
+      <button onClick={() => refetch()}>Refetch Posts</button>
       <ul>
-        {data.map((post) => (
+        {data.slice(0, 10).map((post) => (
           <li key={post.id}>
             <strong>{post.title}</strong>
             <p>{post.body}</p>
@@ -32,5 +32,3 @@ function PostsComponent() {
     </div>
   );
 }
-
-export default PostsComponent;
